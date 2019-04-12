@@ -32,18 +32,11 @@ class loraNode:
         """Initialise The Library and connect to the module"""
         # Import the serial library for the respective platform
 
-        import serial
-        from RPi import GPIO
-        GPIO.setwarnings(False)
-        self.serLib = serial.Serial("/dev/serial0", self.loraNodeSerialBaud)
+        from machine import UART
+        self.serLib = UART(1,loraNodeSerialBaud)    # init with given baudrate
         self.serial_write = self.serLib.write
         self.serial_read = self.serLib.readline
         self.serialLib = 1
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(17,GPIO.OUT)
-        GPIO.output(17,0)
-        sleep(0.01)
-        GPIO.output(17,1)
 
         self.serLib.readline()
         self.serLib.readline()
