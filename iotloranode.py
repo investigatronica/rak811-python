@@ -33,7 +33,12 @@ class loraNode:
         # Import the serial library for the respective platform
 
         from machine import UART
-        self.serLib = UART(1,loraNodeSerialBaud)    # init with given baudrate
+        self.serLib = UART(1,115200)    # init with given baudrate
+        #uart=UART(1)
+        #uart.init(9600, bits=8, parity=None, stop=1)
+        #uart.write(str.encode("at+get_config=dev_eui"));print(uart.readline())
+        #uart.write(str.encode("at+mode=0"));print(str(uart.readline()).split("\\")[0])
+
         self.serial_write = self.serLib.write
         self.serial_read = self.serLib.readline
         self.serialLib = 1
